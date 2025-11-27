@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestor de Despesas Pessoais</title>
+
+<!--CSS-->
+<link rel="stylesheet" href="style.css">
+
+<!--JavaScript-->
+<script src="script.js" defer></script>
+
+</head>
+
+<body class="light-theme">
+
+<header>
+<h1>Gestor de Despesas Pessoais</h1>
+<div class="theme-toggle">
+<label class="switch">
+<input type="checkbox" id="themeSwitcher">
+<span class="slider round"></span>
+</label>
+<span class="theme-label">Modo Escuro</span>
+</div>
+<div id="datetime"></div>
+</header>
+
+
+<main>
+<section class="form-section">
+<h2>Registar Despesa</h2>
+<form id="expenseForm">
+<input type="text" id="description" placeholder="Descrição" required />
+<input type="number" id="amount" placeholder="Valor (€)" required />
+<select id="category" required>
+<option value="">Categoria</option>
+<option>Alimentação</option>
+<option>Transporte</option>
+<option>Lazer</option>
+<option>Saúde</option>
+<option>Outro</option>
+</select>
+<button type="submit">Adicionar</button>
+</form>
+</section>
+
+
+<section class="filter-section">
+<h2>Filtrar por Categoria</h2>
+<select id="filterCategory">
+<option value="todos">Todos</option>
+<option>Alimentação</option>
+<option>Transporte</option>
+<option>Lazer</option>
+<option>Saúde</option>
+<option>Outro</option>
+</select>
+</section>
+
+
+<section class="expenses-section">
+<h2>Lista de Despesas</h2>
+<ul id="expenseList"></ul>
+<div class="total">Total Gasto: <span id="totalAmount">0€</span></div>
+</section>
+
+
+<section class="api-section">
+<h2>Dados da API (exemplo: Tempo)</h2>
+<div id="apiData">Carregando...</div>
+</section>
+</main>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
