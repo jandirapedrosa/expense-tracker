@@ -9,3 +9,18 @@
 ✅ 8. Tema claro/escuro
 ✅ 9. Relógio e data
 ✅ 10. API tempo (ex: OpenWeather)
+
+Funcionalidade	Feito
+Adicionar despesa	✔
+Guardar no LocalStorage	✔
+Mostrar lista	✔
+Editar despesa	✔
+Apagar despesa	✔
+Filtrar despesas	✔
+Tema escuro/claro	✔
+Relógio em tempo real	✔
+API meteo	✔
+Atualização automática da interface	✔
+
+## TODO:
+[] - confirmar se demos json
