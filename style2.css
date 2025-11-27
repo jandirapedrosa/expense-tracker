@@ -1,0 +1,230 @@
+/* ------------------ */
+/* BASE / GLOBAL      */
+/* ------------------ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #fff5fd, #e7e9ff);
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+/*_______________Para dark mode_________________*/
+
+.dark-theme {
+    background: linear-gradient(135deg, #1a1a1a, #2f004f);
+    color: #fff;
+}
+
+.dark-theme .glass {
+    background: rgba(20, 20, 20, 0.6);
+    color: #fff;
+}
+
+.dark-theme input,
+.dark-theme select {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+.dark-theme .filter {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.dark-theme .filter.active {
+    background: #ff38c7;
+}
+
+
+
+/*_____________________*/
+
+
+.wrapper {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Glassmorphism */
+.glass {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/*________________________*/
+
+#datetime {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #4b036e;
+    text-align: center;
+    letter-spacing: 1px;
+    padding: 15px 0;
+}
+
+.dark-theme #datetime {
+    color: #f8d4ff;
+}
+
+/*__________________________*/
+
+
+/* ------------------ */
+/* HEADER             */
+/* ------------------ */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-area {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.logo {
+    width: 60px;
+}
+
+.theme-btn {
+    font-size: 22px;
+    border: none;
+    background: #f1e1ff;
+    padding: 10px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+/* ------------------ */
+/* CLOCK + WEATHER    */
+/* ------------------ */
+
+.top-info {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.top-info > div {
+    flex: 1;
+}
+
+.clock-box, .weather-box {
+    text-align: center;
+}
+
+
+/* ------------------ */
+/* SUMMARY            */
+/* ------------------ */
+
+.summary {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+
+/* ------------------ */
+/* FORM               */
+/* ------------------ */
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-section input,
+.form-section select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: rgba(200,200,230,0.4);
+}
+
+.add-btn {
+    margin-top: 10px;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #ec42ff, #ff147a);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+/* ------------------ */
+/* FILTERS            */
+/* ------------------ */
+
+.filters {
+    text-align: center;
+}
+
+.filter-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.filter {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 20px;
+    background: #dcd4ff;
+    cursor: pointer;
+}
+
+.filter.active {
+    background: #ff38c7;
+    color: white;
+}
+
+
+/* ------------------ */
+/* LISTA              */
+/* ------------------ */
+
+.list-section {
+    padding: 30px;
+}
+
+.expense-list {
+    margin-top: 20px;
+}
+
+.expense-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+.empty {
+    text-align: center;
+    opacity: 0.7;
+    font-size: 14px;
+}

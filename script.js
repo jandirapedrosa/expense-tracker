@@ -1,137 +1,112 @@
-// =============================
-// Gestor de Despesas Pessoais
-// JavaScript
-// =============================
+// ----------------------------
+//   TEMA CLARO / ESCURO
+// ----------------------------
+const themeSwitcher = document.getElementById("themeSwitcher");
+const body = document.body;
 
-// Seletores
+themeSwitcher.addEventListener("change", () => {
+  body.classList.toggle("dark-theme");
+});
+
+
+// ----------------------------
+//   DATA / HORA EM TEMPO REAL
+// ----------------------------
+function atualizarDataHora() {
+  const agora = new Date();
+  document.getElementById("datetime").textContent =
+    agora.toLocaleString("pt-PT");
+}
+setInterval(atualizarDataHora, 1000);
+atualizarDataHora();
+
+
+// ----------------------------
+//   GESTÃO DE DESPESAS
+// ----------------------------
+let expenses = [];
+
 const form = document.getElementById("expenseForm");
-const descriptionInput = document.getElementById("description");
-const amountInput = document.getElementById("amount");
-const categoryInput = document.getElementById("category");
-const list = document.getElementById("expenseList");
+const expenseList = document.getElementById("expenseList");
 const totalAmount = document.getElementById("totalAmount");
 const filterCategory = document.getElementById("filterCategory");
-const themeSwitcher = document.getElementById("themeSwitcher");
-const apiData = document.getElementById("apiData");
-const datetimeDiv = document.getElementById("datetime");
 
-let expenses = []; // Armazena despesas
+// Adicionar despesa
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-// =============================
-// Atualizar Data/Hora
-// =============================
-function updateDateTime() {
-    const now = new Date();
-    datetimeDiv.textContent = now.toLocaleString("pt-PT");
-}
-setInterval(updateDateTime, 1000);
-updateDateTime();
+  const description = document.getElementById("description").value;
+  const amount = parseFloat(document.getElementById("amount").value);
+  const category = document.getElementById("category").value;
 
-// =============================
-// Adicionar Despesa
-// =============================
-form.addEventListener("submit", function (e) {
-    e.preventDefault();
+  const expense = {
+    id: Date.now(),
+    description,
+    amount,
+    category
+  };
 
-    const expense = {
-        id: Date.now(),
-        description: descriptionInput.value,
-        amount: parseFloat(amountInput.value),
-        category: categoryInput.value,
-    };
-
-    expenses.push(expense);
-    renderExpenses();
-
-    form.reset();
+  expenses.push(expense);
+  form.reset();
+  renderExpenses();
 });
 
-// =============================
-// Renderizar Lista
-// =============================
+// Renderização da lista filtrada
 function renderExpenses() {
-    list.innerHTML = "";
+  const filtro = filterCategory.value;
+  expenseList.innerHTML = "";
 
-    const filtered = filterCategory.value === "todos"
-        ? expenses
-        : expenses.filter(exp => exp.category === filterCategory.value);
+  const filtered = filtro === "todos"
+    ? expenses
+    : expenses.filter(e => e.category === filtro);
 
-    filtered.forEach(exp => {
-        const li = document.createElement("li");
-        li.classList.add("expense-item");
-        li.innerHTML = `
-            <span>${exp.description} - ${exp.amount.toFixed(2)}€ (${exp.category})</span>
-            <div>
-                <button class="edit-btn" onclick="editExpense(${exp.id})">Editar</button>
-                <button class="delete-btn" onclick="deleteExpense(${exp.id})">Apagar</button>
-            </div>
-        `;
-        list.appendChild(li);
-    });
+  let total = 0;
 
-    updateTotal();
+  filtered.forEach(exp => {
+    total += exp.amount;
+
+    const li = document.createElement("li");
+    li.classList.add("expense-item");
+    li.innerHTML = `
+      <span>${exp.description} (${exp.category}) - ${exp.amount.toFixed(2)}€</span>
+      <button class="remove-btn" data-id="${exp.id}">❌</button>
+    `;
+    expenseList.appendChild(li);
+  });
+
+  totalAmount.textContent = `${total.toFixed(2)}€`;
 }
 
-// =============================
-// Atualizar Total
-// =============================
-function updateTotal() {
-    const total = expenses.reduce((sum, exp) => sum + exp.amount, 0);
-    totalAmount.textContent = total.toFixed(2) + "€";
-}
-
-// =============================
-// Apagar Despesa
-// =============================
-function deleteExpense(id) {
+// Remover item
+expenseList.addEventListener("click", (e) => {
+  if (e.target.classList.contains("remove-btn")) {
+    const id = Number(e.target.dataset.id);
     expenses = expenses.filter(exp => exp.id !== id);
     renderExpenses();
-}
-
-// =============================
-// Editar Despesa
-// =============================
-function editExpense(id) {
-    const exp = expenses.find(e => e.id === id);
-
-    const newDesc = prompt("Editar descrição:", exp.description);
-    const newAmount = prompt("Editar valor:", exp.amount);
-    const newCat = prompt("Editar categoria:", exp.category);
-
-    if (newDesc && newAmount && newCat) {
-        exp.description = newDesc;
-        exp.amount = parseFloat(newAmount);
-        exp.category = newCat;
-    }
-
-    renderExpenses();
-}
-
-// =============================
-// Filtrar por categoria
-// =============================
-filterCategory.addEventListener("change", renderExpenses);
-
-// =============================
-// Tema Claro/Escuro
-// =============================
-themeSwitcher.addEventListener("change", () => {
-    document.body.classList.toggle("dark-theme");
+  }
 });
 
-// =============================
-// API Externa - Exemplo: Tempo
-// (Open-Meteo API – sem chave)
-// =============================
-async function loadWeather() {
-    try {
-        const resp = await fetch("https://api.open-meteo.com/v1/forecast?latitude=38.72&longitude=-9.14&current_weather=true");
-        const data = await resp.json();
+// Atualizar lista ao mudar filtro
+filterCategory.addEventListener("change", renderExpenses);
 
-        apiData.textContent = `Temperatura Atual em Lisboa: ${data.current_weather.temperature}°C`;
-    } catch (error) {
-        apiData.textContent = "Erro ao carregar dados da API";
-    }
+
+// ----------------------------
+//   API DE EXEMPLO (TEMPO)
+// ----------------------------
+const apiDiv = document.getElementById("apiData");
+
+// API falsa para demonstração
+function carregarAPI() {
+  apiDiv.textContent = "Carregando...";
+
+  // Simula uma chamada à API
+  setTimeout(() => {
+    const temperatura = (Math.random() * 15 + 10).toFixed(1); // temperatura 10° a 25°
+    const estados = ["Sol", "Nuvens", "Chuva"];
+    const estado = estados[Math.floor(Math.random() * estados.length)];
+
+    apiDiv.textContent = `Tempo agora: ${temperatura}°C | ${estado}`;
+  }, 1000);
 }
 
-loadWeather();
+carregarAPI();

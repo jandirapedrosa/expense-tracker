@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Expense Manager</title>
+
+    <!--CSS-->
+    <link rel="stylesheet" href="style2.css">
+
+    <!--JavaScript-->
+    <script defer src="script2.js" defer></script>
+
+</head>
+
+<body>
+
+<!-- CONTAINER CENTRAL -->
+    <div class="wrapper">
+
+        <!-- HEADER -->
+        <header class="header">
+            <div class="logo-area">
+                <img src="icons/money.png" class="logo" alt="logo">
+                <div>
+                    <h1> ✨money vibes ✨</h1>
+                    <p>track your spending, slay your budget 💅</p>
+                </div>
+            </div>
+
+            <button id="theme-toggle" class="theme-btn">🌙</button>
+        </header>
+
+        <!-- RELÓGIO + METEO -->
+        <section class="top-info">
+
+            <div class="clock-box glass">
+                <div id="datetime"></div>
+                <!-- <h2 id="clock">00:00:00</h2>
+                <p id="date">...</p> -->
+            </div>
+
+            <div class="weather-box glass">
+                <h3 id="weather-city">Horta</h3>
+                <p id="weather-temp">--°C</p>
+                <p id="weather-desc">A carregar...</p>
+                <div class="weather-extra">
+                    <span id="weather-wind"></span>
+                    <span id="weather-humidity"></span>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- TOTAL + CONTADOR -->
+        <section class="summary glass">
+            <div>
+                <h3>total spent 💰</h3>
+                <p id="total">€0.00</p>
+            </div>
+            <div>
+                <h3>expenses tracked ✨</h3>
+                <p id="count">0</p>
+            </div>
+        </section>
+
+        <!-- FORMULÁRIO -->
+        <section class="form-section glass">
+            <h2>✨ add new expense</h2>
+
+            <label>what did u spend on? 🤔</label>
+            <input id="descricao" placeholder="spill the tea…">
+
+            <label>how much? 🟩</label>
+            <input id="valor" type="number" step="0.01" placeholder="€0.00">
+
+            <label>vibe check 🧃</label>
+            <select id="categoria">
+                <option>Alimentação</option>
+                <option>Transporte</option>
+                <option>Saúde</option>
+                <option>Lazer</option>
+                <option>Educação</option>
+                <option>Habitação</option>
+                <option>Outros</option>
+            </select>
+
+            <button id="add-expense" class="add-btn">+ add expense ✨</button>
+        </section>
+
+        <!-- FILTROS -->
+        <section class="filters glass">
+            <h3>filter vibes:</h3>
+            <div class="filter-btns">
+                <button class="filter active" data-filter="all">all ✨</button>
+                <button class="filter" data-filter="Alimentação">Alimentação</button>
+                <button class="filter" data-filter="Transporte">Transporte</button>
+                <button class="filter" data-filter="Saúde">Saúde</button>
+                <button class="filter" data-filter="Lazer">Lazer</button>
+                <button class="filter" data-filter="Educação">Educação</button>
+                <button class="filter" data-filter="Habitação">Habitação</button>
+                <button class="filter" data-filter="Outros">Outros</button>
+            </div>
+        </section>
+
+        <!-- LISTA DE DESPESAS -->
+        <section class="list-section glass">
+            <h2>✨ all your spending</h2>
+
+            <div id="lista" class="expense-list">
+                <p class="empty">no expenses yet! add your first one ✨<br>let's start tracking that 💸</p>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+
+
+
+
+</html>
