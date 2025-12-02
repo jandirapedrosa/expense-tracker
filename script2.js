@@ -1,44 +1,7 @@
-// ----------------------------
-//   TEMA CLARO / ESCURO
-// ----------------------------
-
-// Declarar variáveis
-// const themeButton = document.getElementById("theme-toggle");
-// const body = document.body;
-
-// Alternar tema claro/escuro ao clicar no botão
-// themeButton.addEventListener("click", function() {
-//   body.classList.toggle("dark-theme");
-
-//   //VER MELHOR ISTO AQUI!!
-//   // Para mudar o ícone do botão
-//   themeButton.textContent = body.classList.contains("dark-theme") ? "☀️" : "🌙";
-
-// });
-
-// ----------------------------
-//   DATA / HORA EM TEMPO REAL
-// ----------------------------
-// function atualizarDataHora() {
-//   const agora = new Date();
-//   document.getElementById("datetime").textContent =
-//     agora.toLocaleString("pt-PT");
-// }
-// setInterval(atualizarDataHora, 1000);
-// atualizarDataHora();
-
-// ----------------------------
-//   GESTÃO DE DESPESAS
-// ----------------------------
-
-
-// ----------------------------
-//***************************
-
-
 /***************************
- * 1 — VARIÁVEIS GERAIS
+— VARIÁVEIS GERAIS
  ***************************/
+
 let despesas = JSON.parse(localStorage.getItem("despesas")) || [];
 
 const descricaoInput = document.getElementById("descricao");
@@ -49,7 +12,7 @@ const totalSpan = document.getElementById("total");
 const countSpan = document.getElementById("count");
 
 /***************************
- * 2 — ADICIONAR DESPESA
+— ADICIONAR DESPESA
  ***************************/
 document.getElementById("add-expense").addEventListener("click", () => {
     const descricao = descricaoInput.value.trim();
@@ -77,14 +40,16 @@ document.getElementById("add-expense").addEventListener("click", () => {
 });
 
 /***************************
- * 3 — GUARDAR NO LOCALSTORAGE
+— GUARDAR NO LOCALSTORAGE
  ***************************/
+// Guarda as despesas no navegador (localStorage), para não se perderem ao atualizar ou fechar a página
+
 function guardar() {
     localStorage.setItem("despesas", JSON.stringify(despesas));
 }
 
 /***************************
- * 4 — ATUALIZAR TOTAL + CONTADOR
+— ATUALIZAR TOTAL + CONTADOR
  ***************************/
 function atualizarResumo() {
     const total = despesas.reduce((acc, d) => acc + d.valor, 0);
@@ -94,7 +59,7 @@ function atualizarResumo() {
 }
 
 /***************************
- * 5 — MOSTRAR LISTA
+— MOSTRAR LISTA
  ***************************/
 function atualizarLista(filtro = "all") {
     lista.innerHTML = "";
@@ -134,7 +99,7 @@ function atualizarLista(filtro = "all") {
 }
 
 /***************************
- * 6 — APAGAR DESPESA
+— APAGAR DESPESA
  ***************************/
 function apagar(id) {
     despesas = despesas.filter(d => d.id !== id);
@@ -143,7 +108,7 @@ function apagar(id) {
 }
 
 /***************************
- * 7 — EDITAR DESPESA
+— EDITAR DESPESA
  ***************************/
 function editar(id) {
     const despesa = despesas.find(d => d.id === id);
@@ -162,7 +127,7 @@ function editar(id) {
 }
 
 /***************************
- * 8 — FILTRO DE CATEGORIA
+— FILTRO DE CATEGORIA
  ***************************/
 document.querySelectorAll(".filter").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -175,7 +140,7 @@ document.querySelectorAll(".filter").forEach(btn => {
 });
 
 /***************************
- * 9 — TEMA ESCURO/CLARO
+— TEMA ESCURO/CLARO
  ***************************/
 const themeBtn = document.getElementById("theme-toggle");
 
@@ -186,7 +151,7 @@ themeBtn.addEventListener("click", () => {
 });
 
 /***************************
- * 10 — RELÓGIO E DATA
+— RELÓGIO E DATA
  ***************************/
 function atualizarDataHora() {
     const agora = new Date();
@@ -207,7 +172,7 @@ setInterval(atualizarDataHora, 1000);
 atualizarDataHora();
 
 /***************************
- * 11 — API METEOROLOGIA
+— API METEOROLOGIA
  ***************************/
 async function carregarTempo() {
     const API = "https://api.open-meteo.com/v1/forecast?latitude=38.72&longitude=-9.14&current_weather=true";
@@ -225,7 +190,7 @@ async function carregarTempo() {
 carregarTempo();
 
 /***************************
- * 12 — ATUALIZAR INTERFACE TOTAL
+— ATUALIZAR INTERFACE TOTAL
  ***************************/
 function atualizarInterface() {
     atualizarResumo();
@@ -234,3 +199,72 @@ function atualizarInterface() {
 
 // Inicialização
 atualizarInterface();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ----------------------------
+//   TEMA CLARO / ESCURO
+// ----------------------------
+
+// Declarar variáveis
+// const themeButton = document.getElementById("theme-toggle");
+// const body = document.body;
+
+// Alternar tema claro/escuro ao clicar no botão
+// themeButton.addEventListener("click", function() {
+//   body.classList.toggle("dark-theme");
+
+//   //VER MELHOR ISTO AQUI!!
+//   // Para mudar o ícone do botão
+//   themeButton.textContent = body.classList.contains("dark-theme") ? "☀️" : "🌙";
+
+// });
+
+// ----------------------------
+//   DATA / HORA EM TEMPO REAL
+// ----------------------------
+// function atualizarDataHora() {
+//   const agora = new Date();
+//   document.getElementById("datetime").textContent =
+//     agora.toLocaleString("pt-PT");
+// }
+// setInterval(atualizarDataHora, 1000);
+// atualizarDataHora();
+
+// ----------------------------
+//   GESTÃO DE DESPESAS
+// ----------------------------
