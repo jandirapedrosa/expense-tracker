@@ -23,4 +23,3 @@ API meteo	✔
 Atualização automática da interface	✔
 
 ## TODO:
-[] - confirmar se demos json
